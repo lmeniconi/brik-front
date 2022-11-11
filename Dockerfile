@@ -3,8 +3,10 @@ FROM node:14-alpine
 WORKDIR /app
 ENV NUXT_HOST 0.0.0.0
 
-COPY . .
-RUN yarn
-RUN yarn build
+COPY package.json package-lock.json ./
+RUN npm ci
 
-CMD yarn start
+COPY . .
+RUN npm run build
+
+CMD npm run start
