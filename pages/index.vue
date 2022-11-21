@@ -17,24 +17,32 @@
       <div
         class="absolute top-0 left-0 right-0 z-30 flex h-screen items-center justify-center"
       >
-        <div class="space-y-10 text-center text-white">
-          <h1 class="text-6xl font-semibold">
-            Digitaliza tu negocio al por mayor
-          </h1>
-          <p class="mx-auto w-8/12 text-xl">
-            Crea tu catalogo online y vende tus productos a todo Chile
-          </p>
-          <div class="flex items-center justify-center space-x-4">
-            <!-- <button
-              class="btn btn-outline border-white text-white hover:border-primary-500 hover:bg-primary-500"
-            >
-              <PlayerPlayIcon />
-              Video
-            </button> -->
-            <NuxtLink :to="user ? '/dashboard' : '/auth/login'">
-              <button class="btn btn-primary">Empezar</button>
-            </NuxtLink>
+        <div class="space-y-16 text-center text-white">
+          <div class="space-y-5">
+            <h1 class="text-6xl font-semibold">
+              Busca y encuentra tu producto
+            </h1>
+            <p class="mx-auto w-8/12 text-xl">
+              Busca en nuestra plataforma el producto que necesitas, encuentra
+              el mejor precio y compra en línea.
+            </p>
           </div>
+
+          <form
+            class="flex items-center justify-center"
+            @submit.prevent="search"
+          >
+            <input
+              v-model="query"
+              required
+              type="text"
+              placeholder="Buscar..."
+              class="input w-full max-w-2xl rounded-r-none text-black placeholder-gray-400 focus:placeholder-opacity-50"
+            />
+            <button type="submit" class="btn-primary btn rounded-l-none">
+              Buscar
+            </button>
+          </form>
         </div>
       </div>
     </section>
@@ -45,9 +53,23 @@
 import Vue from 'vue'
 export default Vue.extend({
   layout: 'home',
+  data() {
+    return {
+      query: '',
+    }
+  },
   computed: {
     user() {
       return this.$store.state.auth.user
+    },
+  },
+  methods: {
+    search() {
+      if (this.query)
+        this.$router.push({
+          path: '/marketplace?search=' + this.query,
+          query: { search: this.query },
+        })
     },
   },
 })

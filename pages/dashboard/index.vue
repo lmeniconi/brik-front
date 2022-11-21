@@ -57,13 +57,13 @@
           <td>
             Zemlak, Daniel and Leannon
             <br />
-            <span class="badge badge-ghost badge-sm"
+            <span class="badge-ghost badge badge-sm"
               >Desktop Support Technician</span
             >
           </td>
           <td>Purple</td>
           <td>
-            <button class="btn btn-ghost btn-xs">details</button>
+            <button class="btn-ghost btn-xs btn">details</button>
           </td>
         </tr>
       </DashboardTable>

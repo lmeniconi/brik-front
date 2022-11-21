@@ -14,5 +14,6 @@ module.exports = {
   rules: {
     'vue/multi-word-component-names': 'off',
     'vue/attribute-hyphenation': 'off',
+    'import/named': 'off',
   },
 }

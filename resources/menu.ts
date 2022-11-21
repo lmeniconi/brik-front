@@ -42,11 +42,6 @@ export default [
       to: '/dashboard/estadisticas',
     },
     {
-      icon: 'TrendingUpIcon',
-      label: 'Marketing',
-      to: '/dashboard/marketing',
-    },
-    {
       icon: 'BuildingStoreIcon',
       label: 'Mi Tienda',
       to: '/dashboard/mi-tienda',

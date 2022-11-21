@@ -20,7 +20,8 @@ export const actions = {
       commit('setUser', data)
     } catch (e) {
       if (redirect) {
-        localStorage.setItem('redirect', window.location.pathname)
+        if (process.client)
+          localStorage.setItem('redirect', window.location.pathname)
         this.$router.push('/auth/login')
       }
     }

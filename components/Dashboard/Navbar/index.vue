@@ -11,7 +11,7 @@
       class="app-shell-right flex items-center justify-between border-b-2 px-5"
     >
       <div>
-        <p class="text-lg font-bold">Bienvenido {{ user.firstName }},</p>
+        <p class="text-lg font-bold">Bienvenido {{ user?.firstName }},</p>
         <p class="text-sm">Esperamos que tengas una mañana excelente</p>
       </div>
 
@@ -22,7 +22,7 @@
           <label tabindex="0" class="cursor-pointer">
             <div class="indicator">
               <span
-                class="badge indicator-item badge-error badge-xs indicator-end"
+                class="badge-error badge badge-xs indicator-end indicator-item"
               />
               <BellIcon />
             </div>
@@ -41,10 +41,10 @@
             <div class="indicator">
               <Avatar
                 :src="
-                  user.picture ||
-                  `https://avatars.dicebear.com/api/initials/${user.firstName}-${user.lastName}.svg`
+                  user?.picture ||
+                  `https://avatars.dicebear.com/api/initials/${user?.firstName}-${user?.lastName}.svg`
                 "
-                :alt="user.email"
+                :alt="user?.email"
               />
             </div>
           </label>

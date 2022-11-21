@@ -1,6 +1,6 @@
 <template>
   <section>
-    <Navbar />
+    <HomeNavbar />
     <main>
       <Nuxt />
     </main>

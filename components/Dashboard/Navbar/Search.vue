@@ -5,7 +5,7 @@
         <SearchIcon size="16" class="text-gray-700" />
       </span>
 
-      <label class="input-group input-group-xs">
+      <label class="input-group-xs input-group">
         <input
           ref="searchInput"
           v-model="search"
