@@ -5,27 +5,21 @@
     <Search inputClass="w-96" />
 
     <div class="flex items-center space-x-4">
-      <button class="flex">
+      <button class="flex space-x-1">
         <ShoppingCartIcon />
-        Carrito
+        <span> Carrito </span>
       </button>
 
-      <div class="dropdown-end dropdown">
-        <label tabindex="0" class="flex cursor-pointer">
-          <UserIcon />
-          <span>
-            {{ user ? 'Cuenta' : 'Iniciar Sesión' }}
-          </span>
-        </label>
-        <ul
-          tabindex="0"
-          class="dropdown-content menu rounded-box w-52 bg-base-100 p-2 shadow"
-        >
-          <li>
-            <NuxtLink to="/mi-cuenta"> Mi Perfil </NuxtLink>
-          </li>
-        </ul>
-      </div>
+      <div></div>
+
+      <button v-if="user" class="flex space-x-1">
+        <UserIcon />
+        <span> Mi Perfil </span>
+      </button>
+      <button v-else class="flex space-x-1">
+        <UserIcon />
+        <span> Iniciar Sesión </span>
+      </button>
     </div>
   </nav>
 </template>

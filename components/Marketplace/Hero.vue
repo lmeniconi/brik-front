@@ -1,5 +1,5 @@
 <template>
-  <section class="flex h-72 flex-col justify-center space-y-5">
+  <section class="flex h-52 flex-col space-y-5">
     <h1 class="text-5xl font-semibold">{{ title }}</h1>
     <MarketplaceBreadcrumb />
   </section>

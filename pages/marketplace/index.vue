@@ -38,37 +38,41 @@
 
         <div class="col-span-10 px-5">
           <div class="grid grid-cols-3 gap-5 xl:grid-cols-4">
-            <article
+            <NuxtLink
               v-for="item in [
                 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
               ]"
               :key="item"
-              class="h-96 w-full rounded border border-gray-100"
+              :to="`/marketplace/productos/${item}`"
             >
-              <div class="h-[60%] bg-gray-500"></div>
-              <div class="flex h-[40%] flex-col justify-between p-4">
-                <div class="space-y-1">
-                  <span class="text-xs text-gray-500">Categoria</span>
-                  <div>
-                    <p class="font-medium">Papitas Fritas</p>
-                    <MarketplaceRating />
+              <article
+                class="h-96 w-full rounded border border-gray-100 transition duration-300 hover:scale-105"
+              >
+                <div class="h-[60%] rounded bg-gray-500" />
+                <div class="flex h-[40%] flex-col justify-between p-4">
+                  <div class="space-y-1">
+                    <span class="text-xs text-gray-500">Categoria</span>
+                    <div>
+                      <p class="font-medium">Papitas Fritas</p>
+                      <MarketplaceRating />
+                    </div>
+                  </div>
+
+                  <div class="flex justify-between">
+                    <p class="font-medium">
+                      $ 1.000
+                      <span class="text-sm text-gray-500 line-through">
+                        $1.500
+                      </span>
+                    </p>
+                    <button class="btn-outline btn-primary btn-xs btn border-0">
+                      <ShoppingCartPlusIcon />
+                      Agregar
+                    </button>
                   </div>
                 </div>
-
-                <div class="flex justify-between">
-                  <p class="font-medium">
-                    $ 1.000
-                    <span class="text-sm text-gray-500 line-through">
-                      $1.500
-                    </span>
-                  </p>
-                  <button class="btn-outline btn-primary btn-xs btn border-0">
-                    <ShoppingCartPlusIcon />
-                    Agregar
-                  </button>
-                </div>
-              </div>
-            </article>
+              </article>
+            </NuxtLink>
           </div>
         </div>
       </section>

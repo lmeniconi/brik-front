@@ -1,7 +1,7 @@
 <template>
   <section class="container mx-auto px-5">
     <MarketplaceNavbar />
-    <main>
+    <main class="mt-20">
       <Nuxt />
     </main>
   </section>
