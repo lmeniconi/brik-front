@@ -5,8 +5,10 @@
     <DashboardCard title="Productos">
       <div class="flex items-center justify-between space-x-4">
         <div class="w-10/12">
-          <select class="select select-bordered w-full">
-            <option disabled selected>Seleccionar Producto</option>
+          <select class="select-bordered select w-full">
+            <option disabled selected class="font-normal">
+              Seleccionar Producto
+            </option>
             <option>Producto 1</option>
             <option>Producto 2</option>
             <option>Producto 3</option>
@@ -22,10 +24,10 @@
 
     <DashboardCard title="Cliente">
       <template #action>
-        <button class="link link-primary text-sm">Agregar cliente</button>
+        <button class="link-primary link text-sm">Agregar cliente</button>
       </template>
 
-      <select class="select select-bordered w-full">
+      <select class="select-bordered select w-full">
         <option disabled selected>Seleccionar Cliente</option>
         <option>Cliente 1</option>
         <option>Cliente 2</option>

@@ -1,15 +1,15 @@
 <template>
   <div>
     <DashboardTable
-      :headers="['Cliente', 'Estado', 'Notas']"
+      :headers="['Nombre', 'Precio', 'Stock']"
       selectable
       withActions
       withPagination
     >
       <template #actions>
         <div class="flex justify-end">
-          <NuxtLink to="pedidos/crear" class="btn btn-primary"
-            >Añadir pedido</NuxtLink
+          <NuxtLink to="productos/crear" class="btn btn-primary"
+            >Añadir producto</NuxtLink
           >
         </div>
       </template>
@@ -26,18 +26,20 @@
             >Desktop Support Technician</span
           >
         </td>
+        <td>$ 1.000</td>
         <td>
-          <div class="badge-warning badge text-white">Pago pendiente</div>
+          <div class="badge-warning badge text-white">10 unidades</div>
         </td>
-        <td>Nota</td>
-        <td class="flex items-center">
-          <DashboardButton type="edit" />
-          <DashboardButton type="delete" @click="deleteModal = true" />
+        <td>
+          <div class="flex items-center">
+            <DashboardButton type="edit" />
+            <DashboardButton type="delete" @click="deleteModal = true" />
+          </div>
         </td>
       </tr>
     </DashboardTable>
 
-    <DashboardModalDelete v-model="deleteModal" model="Pedido" />
+    <DashboardModalDelete v-model="deleteModal" model="Producto" />
   </div>
 </template>
 

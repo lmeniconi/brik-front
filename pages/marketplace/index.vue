@@ -1,6 +1,6 @@
 <template>
   <section class="space-y-xs">
-    <MarketplaceHero title="Vegetales" />
+    <MarketplaceHero :title="querySearch" />
 
     <section class="space-y-8">
       <section class="grid grid-cols-12">
@@ -91,6 +91,11 @@ export default Vue.extend({
       categories: ['Frutas', 'Verduras', 'Legumbres', 'Cereales'],
       activeCategories: [] as string[],
     }
+  },
+  computed: {
+    querySearch() {
+      return this.$route.query.search
+    },
   },
   methods: {
     filterByCategory(category: string) {

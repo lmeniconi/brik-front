@@ -8,10 +8,15 @@
       Brik
     </NuxtLink>
 
-    <NuxtLink v-if="show" :to="user ? '/dashboard' : '/auth/login'">
-      <button class="btn-primary btn">
-        {{ user ? 'Ir a Dashboard' : 'Iniciar Sesión' }}
-      </button>
+    <NuxtLink
+      v-if="showProviders"
+      :to="user ? '/dashboard' : '/auth/login'"
+      class="btn-primary btn"
+    >
+      {{ user ? 'Ir a Dashboard' : 'Iniciar Sesión' }}
+    </NuxtLink>
+    <NuxtLink v-else to="/proveedores" class="btn-primary btn">
+      Soy Proveedor
     </NuxtLink>
   </nav>
 </template>
@@ -23,7 +28,7 @@ export default Vue.extend({
     user() {
       return this.$store.state.auth.user
     },
-    show() {
+    showProviders() {
       return ['/proveedores'].includes(this.$route.path)
     },
     isDark() {

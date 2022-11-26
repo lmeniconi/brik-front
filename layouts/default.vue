@@ -42,6 +42,11 @@ export default Vue.extend({
   @apply text-lg font-medium;
 }
 
+.input-bordered,
+.textarea-bordered {
+  @apply focus:outline-none;
+}
+
 /* Transitions */
 .fade-enter-active,
 .fade-leave-active {
