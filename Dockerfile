@@ -4,7 +4,7 @@ WORKDIR /app
 ENV NUXT_HOST 0.0.0.0
 
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN npm install
 
 COPY . .
 RUN npm run build
