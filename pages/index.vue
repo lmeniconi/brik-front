@@ -39,7 +39,7 @@
               placeholder="Buscar..."
               class="input w-full max-w-2xl rounded-r-none text-black placeholder-gray-400 focus:placeholder-opacity-50"
             />
-            <button type="submit" class="btn btn-primary rounded-l-none">
+            <button type="submit" class="btn-primary btn rounded-l-none">
               Buscar
             </button>
           </form>

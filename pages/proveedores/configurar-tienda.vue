@@ -5,9 +5,7 @@
         <div class="flex w-full lg:w-11/12 xl:w-3/4">
           <div
             class="hidden h-auto w-full rounded-l-lg bg-gray-400 bg-cover lg:block lg:w-5/12"
-            style="
-              background-image: url('https://source.unsplash.com/Mv9hjnEUHR4/600x800');
-            "
+            style="background-image: url('/assets/images/market.jpg')"
           />
 
           <div
@@ -55,7 +53,7 @@
                 </Input>
               </div>
 
-              <button class="btn btn-primary w-full">Guardar</button>
+              <button class="btn-primary btn w-full">Guardar</button>
 
               <hr class="border-t" />
               <div class="text-center">
