@@ -6,11 +6,6 @@ export default [
       to: '/dashboard',
     },
     {
-      icon: 'PackageIcon',
-      label: 'Pedidos',
-      to: '/dashboard/pedidos',
-    },
-    {
       icon: 'HangerIcon',
       label: 'Catálogo',
       to: '/dashboard/catalogo',
@@ -18,14 +13,6 @@ export default [
         {
           label: 'Productos',
           to: '/dashboard/catalogo/productos',
-        },
-        {
-          label: 'Categorías',
-          to: '/dashboard/catalogo/categorias',
-        },
-        {
-          label: 'Colecciones',
-          to: '/dashboard/catalogo/colecciones',
         },
       ],
     },
@@ -36,11 +23,6 @@ export default [
     },
   ],
   [
-    {
-      icon: 'FileAnalyticsIcon',
-      label: 'Estadisticas',
-      to: '/dashboard/estadisticas',
-    },
     {
       icon: 'BuildingStoreIcon',
       label: 'Mi Tienda',

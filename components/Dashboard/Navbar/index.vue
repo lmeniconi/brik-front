@@ -22,7 +22,7 @@
           <label tabindex="0" class="cursor-pointer">
             <div class="indicator">
               <span
-                class="badge-error badge badge-xs indicator-end indicator-item"
+                class="badge badge-error badge-xs indicator-end indicator-item"
               />
               <BellIcon />
             </div>

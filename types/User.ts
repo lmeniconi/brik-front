@@ -1,7 +1,12 @@
+import { Store } from './Store'
+
 export type User = {
   id: number
   email: string
+  firstName: string
+  lastName: string
   picture: string | null
-  provider: 'auth0'
-  role: 'admin' | 'user'
+  origin: 'auth0'
+  role: 'admin' | 'provider' | 'user'
+  store?: Store
 }

@@ -8,7 +8,7 @@
       <button class="btn btn-primary text-white" @click="close">
         Cancelar
       </button>
-      <button class="btn btn-error text-white">Borrar</button>
+      <button class="btn btn-error text-white" @click="remove">Borrar</button>
     </template>
   </DashboardModalBase>
 </template>
@@ -19,6 +19,10 @@ export default Vue.extend({
   props: {
     value: {
       type: Boolean,
+      required: true,
+    },
+    endpoint: {
+      type: String,
       required: true,
     },
     model: {
@@ -40,6 +44,14 @@ export default Vue.extend({
     },
   },
   methods: {
+    async remove() {
+      this.$store.commit('loader/setLoading', true)
+      await this.$axios.delete(this.endpoint)
+      this.$store.commit('loader/setLoading', false)
+      this.active = false
+      this.$emit('refresh')
+    },
+
     close() {
       this.active = false
     },

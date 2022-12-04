@@ -4,6 +4,7 @@
     <section class="relative pt-[10vh]">
       <DashboardSidebar class="app-shell-left" />
       <main class="app-shell-right ml-auto p-10">
+        <Loader v-show="loading" />
         <transition name="fade">
           <Nuxt />
         </transition>
@@ -15,7 +16,12 @@
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
-  middleware: 'auth',
+  middleware: ['auth', 'isProvider'],
+  computed: {
+    loading(): boolean {
+      return this.$store.state.loader.loading
+    },
+  },
 })
 </script>
 
@@ -43,7 +49,8 @@ export default Vue.extend({
 }
 
 .input-bordered,
-.textarea-bordered {
+.textarea-bordered,
+.select-bordered {
   @apply focus:outline-none;
 }
 

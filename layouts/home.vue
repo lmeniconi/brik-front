@@ -2,6 +2,7 @@
   <section>
     <HomeNavbar />
     <main>
+      <Loader v-show="loading" />
       <Nuxt />
     </main>
   </section>
@@ -10,6 +11,11 @@
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
+  computed: {
+    loading(): boolean {
+      return this.$store.state.loader.loading
+    },
+  },
   created() {
     this.$store.dispatch('auth/fetchUser')
   },

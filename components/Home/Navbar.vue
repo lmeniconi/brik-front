@@ -8,16 +8,18 @@
       Brik
     </NuxtLink>
 
-    <NuxtLink
-      v-if="showProviders"
-      :to="user ? '/dashboard' : '/auth/login'"
-      class="btn-primary btn"
-    >
-      {{ user ? 'Ir a Dashboard' : 'Iniciar Sesión' }}
-    </NuxtLink>
-    <NuxtLink v-else to="/proveedores" class="btn-primary btn">
-      Soy Proveedor
-    </NuxtLink>
+    <div v-if="showButton">
+      <NuxtLink
+        v-if="showProviders"
+        :to="providersLink.to"
+        class="btn-primary btn"
+      >
+        {{ providersLink.label }}
+      </NuxtLink>
+      <NuxtLink v-else to="/proveedores" class="btn-primary btn">
+        Soy Proveedor
+      </NuxtLink>
+    </div>
   </nav>
 </template>
 
@@ -28,11 +30,34 @@ export default Vue.extend({
     user() {
       return this.$store.state.auth.user
     },
+    showButton() {
+      return ['/', '/proveedores'].includes(this.$route.path)
+    },
     showProviders() {
       return ['/proveedores'].includes(this.$route.path)
     },
+    providersLink() {
+      if (!this.user)
+        return {
+          label: 'Empezar',
+          to: '/auth/login',
+        }
+
+      // @ts-ignore
+      return this.user.role === 'provider'
+        ? {
+            label: 'Ir a Dashboard',
+            to: '/dashboard',
+          }
+        : {
+            label: 'Crear Tienda',
+            to: '/proveedores/configurar-tienda',
+          }
+    },
     isDark() {
-      return ['/', '/proveedores'].includes(this.$route.path)
+      return ['/', '/proveedores', '/proveedores/configurar-tienda'].includes(
+        this.$route.path
+      )
     },
     isAbsolute() {
       return ['/', '/proveedores'].includes(this.$route.path)

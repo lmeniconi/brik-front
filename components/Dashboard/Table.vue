@@ -39,12 +39,17 @@
       </table>
     </div>
 
-    <div v-if="withPagination" class="flex justify-end">
+    <div v-if="pagination" class="flex justify-end">
       <div class="btn-group">
-        <button class="btn btn-primary">1</button>
-        <button class="btn btn-active">2</button>
-        <button class="btn btn-primary">3</button>
-        <button class="btn btn-primary">4</button>
+        <button
+          v-for="index in pages"
+          :key="index"
+          class="btn btn-primary"
+          :class="{ 'btn-outline': pagination.current_page !== index }"
+          @click="$emit('changePage', index)"
+        >
+          {{ index }}
+        </button>
       </div>
     </div>
   </div>
@@ -52,6 +57,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { Pagination } from '@/types'
+
 export default Vue.extend({
   props: {
     headers: {
@@ -66,9 +73,20 @@ export default Vue.extend({
       type: Boolean,
       default: false,
     },
-    withPagination: {
-      type: Boolean,
-      default: false,
+    pagination: {
+      type: Object as () => Pagination,
+      default: null,
+    },
+  },
+  computed: {
+    pages() {
+      if (!this.pagination) return 0
+
+      const result = Math.trunc(
+        this.pagination.total / this.pagination.per_page
+      )
+
+      return result || 1
     },
   },
 })

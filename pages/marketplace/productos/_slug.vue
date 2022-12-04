@@ -1,71 +1,116 @@
 <template>
-  <section class="space-y-xs">
-    <section class="flex gap-5">
-      <div class="h-[32rem] w-4/12">
-        <div class="h-full rounded border-2 border-gray-100" />
+  <section class="space-y-xs container mx-auto">
+    <section v-if="product" class="flex gap-5">
+      <div class="relative h-full w-4/12">
+        <div class="h-96 rounded border-2 border-gray-100">
+          <img
+            class="h-full w-full rounded object-cover"
+            :src="`${$config.apiUrl}/uploads/${product.image}`"
+            :alt="product.name"
+          />
+        </div>
       </div>
-      <div class="flex w-8/12 flex-col justify-between py-5">
-        <div>
-          <p class="text-xl font-medium text-primary-500">Fruit</p>
-          <div class="flex items-center space-x-1">
-            <h1 class="text-3xl font-semibold">Fresh figs</h1>
-            <span class="text-xs">-</span>
-            <NuxtLink
-              to="/marketplace/proveedores/1"
-              class="text-xs transition duration-300 hover:underline"
+      <div class="w-8/12">
+        <div class="w-full space-y-6 xl:w-7/12">
+          <div>
+            <div
+              v-if="product?.categories"
+              class="flex space-x-1 text-sm font-medium text-primary-500"
             >
-              Proveedor 1
+              <div
+                v-for="(category, index) in product.categories"
+                :key="category.slug"
+                class="flex space-x-1"
+              >
+                <p>
+                  {{ category.name }}
+                </p>
+                <span v-if="index !== product.categories.length - 1">-</span>
+              </div>
+            </div>
+            <h1 class="text-3xl font-semibold">{{ product?.name }}</h1>
+            <span class="text-xs">vendido por</span>
+            <NuxtLink
+              :to="`/marketplace/proveedores/${product.store.slug}`"
+              class="text-xs text-primary-500 transition duration-300 hover:underline"
+            >
+              {{ product.store.name }}
             </NuxtLink>
           </div>
-        </div>
-        <MarketplaceRating />
 
-        <div>
-          <p class="font-medium">Price for 1 kg</p>
-          <h2 class="text-3xl font-semibold">$24.00</h2>
-        </div>
-
-        <div class="w-7/12 space-y-2 text-sm text-gray-500">
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi,
-            modi repudiandae consectetur quas aut distinctio accusamus nihil
-            reprehenderit vero doloremque?
-          </p>
-          <ul class="ml-auto pl-6">
-            <li>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem,
-              illum!
-            </li>
-            <li>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem,
-              illum!
-            </li>
-            <li>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem,
-              illum!
+          <ul v-if="product?.productPrices" class="space-y-2">
+            <li
+              v-for="productPrice in product.productPrices.reverse()"
+              :key="productPrice.id"
+              class="w-fit text-center"
+            >
+              <div class="flex space-x-1 font-medium">
+                <p>
+                  Precio de {{ productPrice.minUnits }} -
+                  {{ productPrice?.maxUnits || '∞' }}
+                  unidades
+                </p>
+              </div>
+              <h2 class="text-2xl font-semibold">$ {{ productPrice.price }}</h2>
             </li>
           </ul>
-        </div>
 
-        <div>
-          <a class="btn-success btn flex w-fit space-x-1 text-xs text-white">
-            <BrandWhatsappIcon />
-            <span> Contactar con proveedor </span>
-          </a>
-        </div>
+          <div class="space-y-2 text-sm text-gray-500">
+            <p>
+              {{ product?.description }}
+            </p>
+            <ul
+              v-if="product?.characteristics"
+              class="characteristics ml-auto pl-6"
+            >
+              <li
+                v-for="characteristic in product.characteristics.split(',')"
+                :key="characteristic"
+              >
+                {{ characteristic }}
+              </li>
+            </ul>
+          </div>
 
-        <div class="flex space-x-2">
-          <input
-            type="number"
-            placeholder="Cantidad"
-            min="1"
-            class="input-bordered input w-32 focus:outline-none"
-          />
-          <button class="btn-primary btn text-xs">Comprar ahora</button>
-          <button class="btn-outline btn-primary btn space-x-1 text-xs">
-            <ShoppingCartPlusIcon />
-            <span> Agregar al carrito </span>
-          </button>
+          <div class="space-y-2">
+            <a
+              v-if="product.store.whatsappLink"
+              :href="product.store.whatsappLink"
+              target="_blank"
+              class="btn btn-success flex w-fit space-x-1 text-xs text-white"
+            >
+              <BrandWhatsappIcon />
+              <span> Contactar con proveedor </span>
+            </a>
+
+            <div class="flex space-x-2">
+              <input
+                v-model="quantity"
+                type="number"
+                placeholder="Cantidad"
+                :max="product.stock"
+                min="1"
+                class="input-bordered input w-32 focus:outline-none"
+              />
+              <button
+                class="btn btn-primary text-xs"
+                @click="
+                  addToCart({
+                    buyNow: true,
+                  })
+                "
+              >
+                Comprar ahora
+              </button>
+              <button
+                class="btn-outline btn btn-primary space-x-1 text-xs"
+                @click="() => addToCart()"
+              >
+                <ShoppingCartPlusIcon />
+                <span> Agregar al carrito </span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -74,13 +119,56 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { Product } from '@/types'
 export default Vue.extend({
   layout: 'marketplace',
+  data() {
+    return {
+      product: null as Product | null,
+      quantity: '',
+    }
+  },
+  computed: {
+    productSlug() {
+      return this.$route.params.slug
+    },
+  },
+  mounted() {
+    this.fetchProduct()
+  },
+  methods: {
+    async fetchProduct() {
+      this.$store.commit('loader/setLoading', true)
+
+      this.product = await this.$axios.$get(
+        `/products/${this.productSlug}?store=true`
+      )
+      if (!this.product) this.$router.push('/marketplace')
+
+      this.$store.commit('loader/setLoading', false)
+    },
+
+    addToCart({
+      buyNow = false,
+    }: {
+      buyNow?: boolean
+    } = {}) {
+      const data = {
+        ...this.product,
+        quantity: Number(this.quantity) || 1,
+      }
+
+      this.$store.commit('cart/addProduct', data)
+      if (buyNow) this.$router.push('/marketplace/checkout')
+
+      this.quantity = ''
+    },
+  },
 })
 </script>
 
 <style lang="postcss" scoped>
-ul li::before {
+ul.characteristics li::before {
   @apply -ml-4 inline-block w-4 font-bold text-primary-500;
   content: '\2022';
 }

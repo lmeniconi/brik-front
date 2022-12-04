@@ -5,11 +5,11 @@
     </label>
     <div class="space-y-3">
       <ul class="space-y-3">
-        <li v-for="(item, index) in list" :key="index" class="flex">
-          <DashboardInput
+        <li v-for="(item, index) in items" :key="index" class="flex">
+          <Input
+            v-model="item.data"
             class="w-11/12"
             :placeholder="placeholder"
-            @input="(value) => input(value, index)"
           />
 
           <div class="flex w-1/12 justify-center">
@@ -19,11 +19,14 @@
           </div>
         </li>
       </ul>
-      <button class="btn btn-primary w-fit px-3 py-1 text-xs" @click="add">
+      <button
+        type="button"
+        class="btn btn-primary w-fit px-3 py-1 text-xs"
+        @click="add"
+      >
         {{ button }}
       </button>
     </div>
-    {{ list }}
   </div>
 </template>
 
@@ -31,6 +34,10 @@
 import Vue from 'vue'
 export default Vue.extend({
   props: {
+    value: {
+      type: Array,
+      default: () => [],
+    },
     label: {
       type: String,
       default: '',
@@ -46,18 +53,28 @@ export default Vue.extend({
   },
   data() {
     return {
-      list: [] as string[],
+      items: this.value,
     }
+  },
+  watch: {
+    items: {
+      handler() {
+        this.$emit(
+          'input',
+          this.items.map((item: any) => item.data)
+        )
+      },
+      deep: true,
+    },
   },
   methods: {
     add() {
-      this.list.push('')
-    },
-    input(value: string, index: number) {
-      this.list[index] = value
+      this.items.push({
+        data: '',
+      })
     },
     remove(index: number) {
-      this.list.splice(index, 1)
+      this.items.splice(index, 1)
     },
   },
 })

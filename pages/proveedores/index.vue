@@ -31,8 +31,8 @@
               <PlayerPlayIcon />
               Video
             </button> -->
-            <NuxtLink :to="user ? '/dashboard' : '/auth/login'">
-              <button class="btn-primary btn">Empezar</button>
+            <NuxtLink :to="startLink.to">
+              <button class="btn-primary btn">{{ startLink.label }}</button>
             </NuxtLink>
           </div>
         </div>
@@ -48,6 +48,24 @@ export default Vue.extend({
   computed: {
     user() {
       return this.$store.state.auth.user
+    },
+    startLink() {
+      if (!this.user)
+        return {
+          label: 'Iniciar Sesión',
+          to: '/auth/login',
+        }
+
+      // @ts-ignore
+      return this.user.role === 'provider'
+        ? {
+            label: 'Ir a Dashboard',
+            to: '/dashboard',
+          }
+        : {
+            label: 'Crear Tienda',
+            to: '/proveedores/configurar-tienda',
+          }
     },
   },
 })
