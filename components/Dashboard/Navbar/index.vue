@@ -21,24 +21,6 @@
         <div class="dropdown-end dropdown">
           <label tabindex="0" class="cursor-pointer">
             <div class="indicator">
-              <span
-                class="badge badge-error badge-xs indicator-end indicator-item"
-              />
-              <BellIcon />
-            </div>
-          </label>
-          <ul
-            tabindex="0"
-            class="dropdown-content menu rounded-box w-52 bg-base-100 p-2 shadow"
-          >
-            <li><a>Notificacion 1</a></li>
-            <li><a>Notificacion 2</a></li>
-          </ul>
-        </div>
-
-        <div class="dropdown-end dropdown">
-          <label tabindex="0" class="cursor-pointer">
-            <div class="indicator">
               <Avatar
                 :src="
                   user?.picture ||

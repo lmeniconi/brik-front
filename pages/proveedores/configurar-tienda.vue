@@ -55,7 +55,7 @@
                 </Input>
               </div>
 
-              <button class="btn-primary btn w-full">Guardar</button>
+              <button class="btn btn-primary w-full">Guardar</button>
 
               <hr class="border-t" />
               <div class="text-center">

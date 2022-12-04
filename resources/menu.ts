@@ -16,11 +16,6 @@ export default [
         },
       ],
     },
-    {
-      icon: 'UserIcon',
-      label: 'Clientes',
-      to: '/dashboard/clientes',
-    },
   ],
   [
     {

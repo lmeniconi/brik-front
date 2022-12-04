@@ -227,6 +227,7 @@ export default Vue.extend({
           ? data.characteristics.split(',')
           : []
 
+        data.image = ''
         this.product = data
       } catch (error: any) {
         this.$router.push('/dashboard/catalogo/productos')

@@ -103,9 +103,12 @@ export default Vue.extend({
         price: getRangePrice(product, product.quantity),
       }))
 
+      const store = this.filteredCart[storeSlug][0].store
+
       try {
         await this.$axios.$post('/orders', {
           total: this.getTotal(storeSlug),
+          storeId: store.id,
           products,
         })
         this.$store.commit('cart/clearStore', storeSlug)
