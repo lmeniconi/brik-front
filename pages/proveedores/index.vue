@@ -25,7 +25,7 @@
             Crea tu catalogo online y vende tus productos a todo Chile
           </p>
           <div class="flex items-center justify-center space-x-4">
-            {{ user }}
+            {{ $store.state.auth }}
             <NuxtLink v-if="!user" to="/auth/login" class="btn-primary btn">
               Iniciar Sesión
             </NuxtLink>
