@@ -25,14 +25,18 @@
             Crea tu catalogo online y vende tus productos a todo Chile
           </p>
           <div class="flex items-center justify-center space-x-4">
-            <!-- <button
-              class="btn btn-outline border-white text-white hover:border-primary-500 hover:bg-primary-500"
+            <NuxtLink v-if="!user" to="/auth/login" class="btn-primary btn">
+              Iniciar Sesión
+            </NuxtLink>
+            <NuxtLink
+              v-else-if="!user?.store"
+              to="/proveedores/configurar-tienda"
+              class="btn-primary btn"
             >
-              <PlayerPlayIcon />
-              Video
-            </button> -->
-            <NuxtLink :to="startLink.to" class="btn-primary btn">
-              {{ startLink.label }}
+              Crear Tienda
+            </NuxtLink>
+            <NuxtLink v-else to="/dashboard" class="btn-primary btn">
+              Ir a Dashboard
             </NuxtLink>
           </div>
         </div>
