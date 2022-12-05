@@ -78,6 +78,9 @@
           <li>
             <NuxtLink to="/marketplace/mi-perfil/pedidos">Pedidos</NuxtLink>
           </li>
+          <li>
+            <NuxtLink to="/auth/logout">Cerrar Sesión</NuxtLink>
+          </li>
         </ul>
       </div>
       <NuxtLink

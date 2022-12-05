@@ -12,7 +12,6 @@
     >
       <div>
         <p class="text-lg font-bold">Bienvenido {{ user?.firstName }},</p>
-        <p class="text-sm">Esperamos que tengas una mañana excelente</p>
       </div>
 
       <DashboardNavbarSearch />
