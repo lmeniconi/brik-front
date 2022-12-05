@@ -11,7 +11,7 @@
       class="app-shell-right flex items-center justify-between border-b-2 px-5"
     >
       <div>
-        <p class="text-lg font-bold">Bienvenido {{ user?.firstName }},</p>
+        <p class="text-lg font-bold">Bienvenido {{ user?.firstName }}</p>
       </div>
 
       <DashboardNavbarSearch />
