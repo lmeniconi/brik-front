@@ -7,6 +7,4 @@ COPY package.json package-lock.json ./
 RUN npm install --force
 
 COPY . .
-RUN npm run generate
-
-CMD npm run start
+CMD npm run dev
