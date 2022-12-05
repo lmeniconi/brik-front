@@ -9,14 +9,7 @@
     </NuxtLink>
 
     <div v-if="showButton">
-      <NuxtLink
-        v-if="showProviders"
-        :to="providersLink.to"
-        class="btn-primary btn"
-      >
-        {{ providersLink.label }}
-      </NuxtLink>
-      <NuxtLink v-else to="/proveedores" class="btn-primary btn">
+      <NuxtLink v-if="route === '/'" to="/proveedores" class="btn-primary btn">
         Soy Proveedor
       </NuxtLink>
     </div>
@@ -29,6 +22,9 @@ export default Vue.extend({
   computed: {
     user() {
       return this.$store.state.auth.user
+    },
+    route() {
+      return this.$route.path
     },
     showButton() {
       return ['/', '/proveedores'].includes(this.$route.path)

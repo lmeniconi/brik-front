@@ -31,8 +31,8 @@
               <PlayerPlayIcon />
               Video
             </button> -->
-            <NuxtLink :to="startLink.to">
-              <button class="btn-primary btn">{{ startLink.label }}</button>
+            <NuxtLink :to="startLink.to" class="btn-primary btn">
+              {{ startLink.label }}
             </NuxtLink>
           </div>
         </div>
