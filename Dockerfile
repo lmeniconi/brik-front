@@ -1,10 +1,12 @@
-FROM node:18-alpine
+FROM node:16-alpine
 
 WORKDIR /app
 ENV NUXT_HOST 0.0.0.0
 
-COPY package.json package-lock.json ./
-RUN npm install --force
+COPY package.json yarn.lock ./
+RUN yarn
 
 COPY . .
-CMD npm run dev
+RUN yarn generate
+
+CMD yarn start
