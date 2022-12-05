@@ -3,6 +3,7 @@
     <DashboardTable
       :headers="['Nombre', 'Stock', 'Publicado']"
       :pagination="products.meta"
+      noDataPlaceholder="No hay productos"
       withActions
       @changePage="fetchProducts"
     >

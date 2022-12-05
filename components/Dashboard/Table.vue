@@ -10,7 +10,7 @@
     </div>
 
     <div class="overflow-x-auto">
-      <table class="table w-full">
+      <table v-if="pagination && pagination?.total" class="table w-full">
         <thead>
           <tr>
             <th v-if="selectable">
@@ -37,6 +37,9 @@
           </tr>
         </tfoot>
       </table>
+      <div v-else>
+        <p class="text-center">{{ noDataPlaceholder }}</p>
+      </div>
     </div>
 
     <div v-if="pagination" class="flex justify-end">
@@ -76,6 +79,10 @@ export default Vue.extend({
     pagination: {
       type: Object as () => Pagination,
       default: null,
+    },
+    noDataPlaceholder: {
+      type: String,
+      default: 'No hay registros',
     },
   },
   computed: {
