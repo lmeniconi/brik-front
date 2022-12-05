@@ -48,7 +48,6 @@ export default Vue.extend({
 
       this.products = await this.$axios.$get(`/products${query}`)
 
-      console.log(this.products)
       this.$store.commit('loader/setLoading', false)
     },
   },

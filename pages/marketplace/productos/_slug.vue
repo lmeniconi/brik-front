@@ -40,7 +40,7 @@
 
           <ul v-if="product?.productPrices" class="space-y-2">
             <li
-              v-for="productPrice in product.productPrices.reverse()"
+              v-for="productPrice in product.productPrices"
               :key="productPrice.id"
               class="w-fit text-center"
             >
@@ -77,7 +77,7 @@
               v-if="product.store.whatsappLink"
               :href="product.store.whatsappLink"
               target="_blank"
-              class="btn btn-success flex w-fit space-x-1 text-xs text-white"
+              class="btn-success btn flex w-fit space-x-1 text-xs text-white"
             >
               <BrandWhatsappIcon />
               <span> Contactar con proveedor </span>
@@ -93,7 +93,7 @@
                 class="input-bordered input w-32 focus:outline-none"
               />
               <button
-                class="btn btn-primary text-xs"
+                class="btn-primary btn text-xs"
                 @click="
                   addToCart({
                     buyNow: true,
@@ -103,7 +103,7 @@
                 Comprar ahora
               </button>
               <button
-                class="btn-outline btn btn-primary space-x-1 text-xs"
+                class="btn-outline btn-primary btn space-x-1 text-xs"
                 @click="() => addToCart()"
               >
                 <ShoppingCartPlusIcon />
