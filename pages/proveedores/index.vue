@@ -25,7 +25,6 @@
             Crea tu catalogo online y vende tus productos a todo Chile
           </p>
           <div class="flex items-center justify-center space-x-4">
-            {{ $store.state.auth }}
             <NuxtLink v-if="!user" to="/auth/login" class="btn-primary btn">
               Iniciar Sesión
             </NuxtLink>
@@ -50,10 +49,17 @@
 import Vue from 'vue'
 export default Vue.extend({
   layout: 'home',
-  computed: {
-    user() {
-      return this.$store.state.auth.user
-    },
+  data() {
+    return {
+      user: null,
+    }
+  },
+  async mounted() {
+    // @ts-ignore
+    const user = await this.$axios.$get('/me')
+
+    // @ts-ignore
+    if (user) this.user = user
   },
 })
 </script>
