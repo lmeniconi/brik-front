@@ -25,6 +25,7 @@
             Crea tu catalogo online y vende tus productos a todo Chile
           </p>
           <div class="flex items-center justify-center space-x-4">
+            {{ user }}
             <NuxtLink v-if="!user" to="/auth/login" class="btn-primary btn">
               Iniciar Sesión
             </NuxtLink>
@@ -52,24 +53,6 @@ export default Vue.extend({
   computed: {
     user() {
       return this.$store.state.auth.user
-    },
-    startLink() {
-      if (!this.user)
-        return {
-          label: 'Iniciar Sesión',
-          to: '/auth/login',
-        }
-
-      // @ts-ignore
-      return this.user.role === 'provider'
-        ? {
-            label: 'Ir a Dashboard',
-            to: '/dashboard',
-          }
-        : {
-            label: 'Crear Tienda',
-            to: '/proveedores/configurar-tienda',
-          }
     },
   },
 })
