@@ -12,7 +12,6 @@ export default {
   },
 
   ssr: false,
-  target: 'static',
 
   publicRuntimeConfig: {
     appUrl: process.env.APP_URL,
