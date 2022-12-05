@@ -3,13 +3,14 @@
     <DashboardTable
       :headers="['Nombre', 'Stock', 'Publicado']"
       :pagination="products.meta"
+      :data="products.data"
       noDataPlaceholder="No hay productos"
       withActions
       @changePage="fetchProducts"
     >
       <template #actions>
         <div class="flex justify-end">
-          <NuxtLink to="productos/crear" class="btn btn-primary"
+          <NuxtLink to="productos/crear" class="btn-primary btn"
             >Añadir producto</NuxtLink
           >
         </div>
@@ -18,7 +19,7 @@
       <tr v-for="product in products.data" :key="product.id">
         <td>{{ product.name }}</td>
         <td>
-          <div class="badge badge-warning text-white">
+          <div class="badge-warning badge text-white">
             {{ product.stock }} unidades
           </div>
         </td>

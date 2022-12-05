@@ -10,7 +10,7 @@
     </div>
 
     <div class="overflow-x-auto">
-      <table v-if="pagination && pagination?.total" class="table w-full">
+      <table v-if="data && data.length" class="table w-full">
         <thead>
           <tr>
             <th v-if="selectable">
@@ -47,7 +47,7 @@
         <button
           v-for="index in pages"
           :key="index"
-          class="btn btn-primary"
+          class="btn-primary btn"
           :class="{ 'btn-outline': pagination.current_page !== index }"
           @click="$emit('changePage', index)"
         >
@@ -83,6 +83,10 @@ export default Vue.extend({
     noDataPlaceholder: {
       type: String,
       default: 'No hay registros',
+    },
+    data: {
+      type: Array,
+      default: () => [],
     },
   },
   computed: {
